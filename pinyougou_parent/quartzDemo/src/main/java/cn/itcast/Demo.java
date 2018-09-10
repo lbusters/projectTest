@@ -6,7 +6,7 @@ public class Demo {
 
 	public static void main(String[] args) {
 		new ClassPathXmlApplicationContext("classpath:applicationContext_job.xml");
-		
+		System.out.println("测试");
 	}
 
 }
