@@ -27,4 +27,8 @@ public interface TbOrderMapper {
     int updateByPrimaryKeySelective(TbOrder record);
 
     int updateByPrimaryKey(TbOrder record);
+
+	List<String> selectSellerId();
+
+	List<TbOrder> selectByStatusAndPayment(@Param("status") String status,@Param("startTime") String startTime,@Param("endTime") String endTime);
 }

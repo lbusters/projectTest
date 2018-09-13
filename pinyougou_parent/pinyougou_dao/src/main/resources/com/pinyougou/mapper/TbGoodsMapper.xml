@@ -388,4 +388,17 @@
       is_delete = #{isDelete,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+ <select id="GroupByCategory1Id" resultType="long">
+  		SELECT category1_id FROM tb_goods GROUP BY category1_id
+  </select>
+	<select id="selectByCategory1Id" resultType="long" parameterType="long">
+  		SELECT category2_id FROM tb_goods WHERE category1_id=#{category1Id} GROUP BY category2_id
+  </select>
+  <select id="selectByCategory2IdAndGroup" resultType="long" parameterType="long">
+  		SELECT category3_id FROM tb_goods WHERE category2_id=#{category2Id} GROUP BY category3_id
+  </select>
+  <select id="selectByCategory3IdCount" resultType="int" parameterType="long">
+  		SELECT count(*) FROM tb_goods WHERE category3_id=#{category3Id}
+  </select> 
+  
 </mapper>

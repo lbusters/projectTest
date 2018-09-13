@@ -525,4 +525,10 @@
       seller_id = #{sellerId,jdbcType=VARCHAR}
     where order_id = #{orderId,jdbcType=BIGINT}
   </update>
+  <select id="selectSellerId" resultType="String">
+  	select seller_id from tb_order group by seller_id;
+  </select>
+  <select id="selectByStatusAndPayment" parameterType="String" resultMap="BaseResultMap">
+  	SELECT * FROM tb_order WHERE STATUS=#{status} AND payment_time BETWEEN #{startTime} AND #{endTime}
+  </select>
 </mapper>

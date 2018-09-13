@@ -27,4 +27,12 @@ public interface TbGoodsMapper {
     int updateByPrimaryKeySelective(TbGoods record);
 
     int updateByPrimaryKey(TbGoods record);
+
+	List<Long> GroupByCategory1Id();
+
+	List<Long> selectByCategory1Id(Long category1Id);
+
+	List<Long> selectByCategory2IdAndGroup(Long category2Id);
+
+	int selectByCategory3IdCount(Long category3Id);
 }
