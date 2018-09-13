@@ -3,6 +3,7 @@ import java.util.List;
 import com.pinyougou.pojo.TbGoods;
 
 import entity.PageResult;
+import groupEntity.ChartsView;
 import groupEntity.Goods;
 /**
  * 服务层接口
@@ -65,5 +66,8 @@ public interface GoodsService {
 
 
 	public void updateIsMarketAble(String status, Long[] selectIds);
+
+
+	public ChartsView findGoodsByCategoryId();
 	
 }

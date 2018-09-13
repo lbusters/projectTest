@@ -1,4 +1,5 @@
 package com.pinyougou.sellergoods.service.impl;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +33,7 @@ import com.pinyougou.pojo.TbItem;
 import com.pinyougou.sellergoods.service.GoodsService;
 
 import entity.PageResult;
+import groupEntity.ChartsView;
 import groupEntity.Goods;
 
 /**
@@ -280,6 +282,33 @@ public class GoodsServiceImpl implements GoodsService {
 				}
 			}
 			
+		}
+
+		//统计每个商品分类下的商品数量(spu)
+		public ChartsView findGoodsByCategoryId() {
+			StringBuilder dateParam = new StringBuilder();
+			StringBuilder dateName = new StringBuilder();
+			ChartsView chartsView = new ChartsView();
+			//查找一级分类
+			List<Long> category1IdList  = goodsMapper.GroupByCategory1Id();
+			for (Long category1Id : category1IdList) {
+				//查找二级分类
+				List<Long> category2IdList = goodsMapper.selectByCategory1Id(category1Id);
+				for (Long category2Id : category2IdList) {
+					//查找三级分类
+					List<Long> category3IdList = goodsMapper.selectByCategory2IdAndGroup(category2Id);
+					for (Long category3Id : category3IdList) {
+						int sum = goodsMapper.selectByCategory3IdCount(category3Id);
+						dateParam.append(Integer.toString(sum)+",");
+						dateName.append(Long.toString(category3Id)+",");
+					}
+				}
+			}
+			String dn = dateName.toString().substring(0, dateName.lastIndexOf(","));
+			chartsView.setDateName(dn);
+			String dp = dateParam.toString().substring(0, dateParam.lastIndexOf(","));
+			chartsView.setDateParam(dp);
+			return chartsView;
 		}
 	
 }
