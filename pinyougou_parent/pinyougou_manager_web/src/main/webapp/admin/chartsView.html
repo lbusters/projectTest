@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+ <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/skins/_all-skins.min.css">
+  <script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="../plugins/adminLTE/js/app.min.js"></script>
+<script src="../js/echarts/echarts.min.js"></script>
+ 
+
+<script type="text/javascript" src="../plugins/angularjs/angular.min.js"></script>
+ 
+ <script type="text/javascript" src="../js/base.js"></script>
+ <script type="text/javascript" src="../js/service/echartsService.js"></script>
+ <script type="text/javascript" src="../js/controller/echartsController.js"></script>
+ 
+
+
+</head>
+<body ng-app="pinyougou" ng-controller="echartsController" ng-init="findItemCat();selectType()">
+
+	<div >
+		<div id="container" style="height: 400px"></div>
+	</div>
+	<div align="left" ng-show="flag">
+	<button ng-click="checkCharts(-1)" style="left: " type="button" class="btn btn-primary" 
+    	data-toggle="button"> 上一个
+	</button>
+	</div>
+	<div align="right" ng-show="flag">
+	<button ng-click="checkCharts(1)" style="left: " type="button" class="btn btn-primary" 
+    	data-toggle="button"> 下一个
+	</button>
+	</div>
+</body>
+</html>
