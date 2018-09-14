@@ -17,6 +17,7 @@ public class User  implements Serializable{
 
     public Integer getId() {
         return id;
+		System.out.println("ceshi");
     }
 
     public void setId(Integer id) {
