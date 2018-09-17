@@ -4,17 +4,24 @@ app.controller("echartsController",function($scope, $location, echartsService){
 	 var dateArray ={'dateParam':[],'dateName':[],'extraDate':[],'month':'',length:0};
 	 $scope.itemCatList = [];
 	 $scope.flag=false;
+	 $scope.right=true;
+	 $scope.left=true;
 	 var count = 3;
 	 
 	 $scope.checkCharts=function(num){
-		 if(count==dateArray['length']||count==1){
-			 count = 3;
-			 findSelleds();
+		 count+=num;
+		 if(count>=dateArray['length']){
+			 $scope.right=false;
+			 count = dateArray['length']-1;
 		 }else{
-			 count+=num;
-			 findSelleds(); 
+			 $scope.right=true;
 		 }
-		 
+		 if(count<=0){
+			 $scope.left=false;
+		 }else{
+			 $scope.left=true;
+		 }
+		 findSelleds(); 
 	 }
 	 function findSelleds(){
 		 echartsService.findAllByTimeAndSelled().success(function(response){
